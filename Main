@@ -1,0 +1,202 @@
+import com.sun.source.tree.WhileLoopTree;
+
+import javax.swing.*;
+
+public class Main {
+    public static void main(String[] args) {
+
+        String userAnswer = JOptionPane.showInputDialog("What I help you with? ");
+       String commandHelp = "Help";
+       String commandMath = "Math";
+       String commandJokes = "Jokes";
+       String commandRPS = "RPS";
+       String commandQuit = "Quit";
+
+        while
+        (userAnswer.equals(commandHelp))
+        {
+            JOptionPane.showMessageDialog(null, "You can use the following commands");
+            JOptionPane.showMessageDialog(null, "Help: To learn about commands");
+            JOptionPane.showMessageDialog(null, "Math: Need help with Math?");
+            JOptionPane.showMessageDialog(null, "Jokes: Tells you a funny joke");
+            JOptionPane.showMessageDialog(null, "RPS: Want to play Rock paper scissors");
+            String answerForQuitHelp = JOptionPane.showInputDialog("Type Quit to exit this loop :)");
+
+            if(answerForQuitHelp.equals(commandQuit)){
+                break;
+            }else{
+                JOptionPane.showMessageDialog(null, "Hey that's not an option");
+            }
+
+
+
+        }
+
+
+        while(userAnswer.equals(commandMath)){
+
+
+            String whatToTheMath = JOptionPane.showInputDialog("M = multiplication. D = division. S = Subtraction. A = Addition. Or Quit to quit.");
+
+            while(whatToTheMath.equals("S")){
+                String mathNum1Sub = JOptionPane.showInputDialog("First number you want to do Subtractions with");
+                int mathNum1SubInt = Integer.parseInt(mathNum1Sub);
+                String mathNum2Sub = JOptionPane.showInputDialog("And what will be the second number you will subtract?");
+                int mathNum2SubInt = Integer.parseInt(mathNum2Sub);
+                int subtractionAnswer = mathNum1SubInt-mathNum2SubInt;
+                JOptionPane.showMessageDialog(null, mathNum1SubInt+ " - "+mathNum2SubInt + " = "+subtractionAnswer);
+                String answerToQuitSub = JOptionPane.showInputDialog("Do you want to quit. Type Quit then.");
+
+                if (answerToQuitSub.equals(commandQuit)){
+                    break;
+                }else{
+                    JOptionPane.showMessageDialog(null, "I don't really remember putting that command");
+
+                }
+
+            }
+
+            while(whatToTheMath.equals("D")){
+                String mathNum1Div = JOptionPane.showInputDialog("What the first number you want to divide");
+                int mathNumDivInt = Integer.parseInt(mathNum1Div);
+                String mathNum2Div = JOptionPane.showInputDialog("Ok then. "+ mathNumDivInt+" ÷ "+ "what");
+                int mathNum2DivInt = Integer.parseInt(mathNum2Div);
+                int mathDivAnswer = mathNumDivInt/mathNum2DivInt;
+                JOptionPane.showMessageDialog(null, mathNum1Div + " ÷ "+mathNum2Div+ " = "+mathDivAnswer);
+
+                String answerToQuit = JOptionPane.showInputDialog("Just type Quit...");
+
+                if (answerToQuit.equals(commandQuit)){
+                    break;
+                }
+
+            }
+
+            ///While loop for multiplication
+            while
+            (whatToTheMath.equals("M")) {
+
+                String math1Muli = JOptionPane.showInputDialog("What's the first number you want to do multiplication with?");
+                int math1MuliInt = Integer.parseInt(math1Muli);
+                String math2Muli = JOptionPane.showInputDialog(math1Muli + " x " + "What?");
+                int math2MuliInt = Integer.parseInt(math2Muli);
+                int mathAnswerMuli = math1MuliInt * math2MuliInt;
+                JOptionPane.showMessageDialog(null, "Ok then. " + math1Muli + " x " + math2Muli + " = " + mathAnswerMuli);
+                String ifUserQuits = JOptionPane.showInputDialog("Do you want to quit? Then Type Quit");
+
+
+                //Break for multiplication
+                if
+                (ifUserQuits.equals(commandQuit)) {
+                    break;
+                }else {
+                    JOptionPane.showMessageDialog(null, "I don't remember putting that command");
+                }
+
+            }
+            //This Part is Addition
+            while
+            (whatToTheMath.equals("A"))
+            {
+
+                String numMath1 = JOptionPane.showInputDialog("What's the first number you want to add?");
+                int numMath1Int = Integer.parseInt(numMath1);
+                String numMath2 = JOptionPane.showInputDialog("What's the second number you want to add?");
+                int numMath2Int = Integer.parseInt(numMath2);
+                int numMathAnswer = numMath1Int + numMath2Int;
+                JOptionPane.showMessageDialog(null, "So, " + numMath1 + " + " + numMath2 + " = " + numMathAnswer);
+                String UserQuitAdd = JOptionPane.showInputDialog("Do you want to quit? Then Type Quit");
+
+                if (UserQuitAdd.equals(commandQuit)){
+                    break;
+                }else {
+
+                    JOptionPane.showMessageDialog(null, "Nice try, but sorry not a command");
+
+                }
+
+
+            }
+            //Break for the main Math while loop
+            if (whatToTheMath.equals(commandQuit)){
+                break;
+            }
+
+        }
+
+        while (userAnswer.equals(commandJokes)){
+            String JokesAnswerUser = JOptionPane.showInputDialog("Type: Knock for knock knock jokes, or read for reading jokes or Quit to quit the program");
+
+            if (JokesAnswerUser.equals("Knock")){
+                String knockJokes1 = JOptionPane.showInputDialog("Knock knock");
+                if (knockJokes1.equals("Who is there")){
+
+                    String knockJoke1sec = JOptionPane.showInputDialog("Goat");
+                    if (knockJoke1sec.equals("Goat who")){
+
+                        JOptionPane.showMessageDialog(null, "Goat to the door and find out!");
+                        String knockJokes2 = JOptionPane.showInputDialog("Want another Joke? Type Knock2 for one more");
+
+                        if (knockJokes2.equals("Knock2")){
+
+                            String knockJokes2First = JOptionPane.showInputDialog("Knock Knock");
+                            if (knockJokes2First.equals("Who is there")){
+                                String knockJokes2Sec = JOptionPane.showInputDialog("Zoom");
+
+                                if (knockJokes2Sec.equals("Zoom who")){
+
+                                    JOptionPane.showMessageDialog(null, "Zoom who did you think it was?");
+                                    String knockJokes3User = JOptionPane.showInputDialog("Want to do another? Type Knock3");
+                                    if (knockJokes3User.equals("Knock3")){
+                                        String knock3First = JOptionPane.showInputDialog("Knock Knock");
+                                        if (knock3First.equals("Who is there")){
+                                            String knock3Sec = JOptionPane.showInputDialog("Bless");
+
+                                            if (knock3Sec.equals("Bless who")){
+
+                                                JOptionPane.showMessageDialog(null, "But I didn't sneeze");
+
+                                            }else {
+                                                JOptionPane.showMessageDialog(null, "Your type needs work, try not making a typo");
+                                            }
+
+                                        }else {
+                                            JOptionPane.showMessageDialog(null, "I think you made a typo");
+                                        }
+
+                                    }else {
+                                        break;
+                                    }
+
+                                }else {
+                                    JOptionPane.showMessageDialog(null, "You don't say that");
+                                    break;
+                                }
+
+                            }else {
+                                JOptionPane.showMessageDialog(null, "That's not how to reply");
+                                break;
+                            }
+
+                        }else {
+                            break;
+                        }
+
+
+                    }else{
+                        JOptionPane.showMessageDialog(null, "You ask Goat who");
+                    }
+
+                }else {
+                    JOptionPane.showMessageDialog(null, "Have you not played before you ask Who is there");
+                }
+
+            }
+
+            if (JokesAnswerUser.equals(commandQuit)){
+                break;
+            }
+        }
+
+    }
+}
