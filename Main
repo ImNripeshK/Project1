@@ -1,4 +1,4 @@
-import com.sun.source.tree.WhileLoopTree;
+
 
 import javax.swing.*;
 
@@ -6,67 +6,248 @@ public class Main {
     public static void main(String[] args) {
 
         String userAnswer = JOptionPane.showInputDialog("What I help you with? ");
-       String commandHelp = "Help";
-       String commandMath = "Math";
-       String commandJokes = "Jokes";
-       String commandRPS = "RPS";
-       String commandQuit = "Quit";
+        String commandHelp = "Help";
+        String commandMath = "Math";
+        String commandJokes = "Jokes";
+        String commandRPS = "RPS";
+        String commandQuit = "Quit";
+        String commandMiniGame = "Play";
 
+        //RPS
+        while(userAnswer.equals(commandRPS)){
+            String userInput, playAgain, oppInput;
+            int userInt, randomNumber;
+            userInt = 3;
+            oppInput = "No";
+            playAgain = "yes";
+            randomNumber = (int)(Math.random()*2+1);
+
+            while(playAgain.contains("es")) {
+                randomNumber = (int)(Math.random()*3+1);
+                userInput = JOptionPane.showInputDialog("Rock, Paper, Scissor, Shoot!");
+                if (userInput.contains("ock")) {
+                    userInt = 1;
+                } else if (userInput.contains("aper")) {
+                    userInt = 2;
+                } else if (userInput.contains("cissor")) {
+                    userInt = 3;
+                } else {
+                    JOptionPane.showMessageDialog(null, "Unknown input");
+                }
+
+                if (randomNumber == 1) {
+                    oppInput = "Rock";
+                } else if (randomNumber == 2) {
+                    oppInput = "Paper";
+                } else if (randomNumber == 3) {
+                    oppInput = "Scissors";
+                } else {
+                    JOptionPane.showMessageDialog(null, "Unknown input");
+                }
+
+                JOptionPane.showMessageDialog(null, "The opponent choose: " + oppInput);
+
+                if (userInt == randomNumber) {
+                    JOptionPane.showMessageDialog(null, "Tie!");
+                } else if (userInt == 1 && randomNumber == 2) {
+                    JOptionPane.showMessageDialog(null, "You Lose!");
+                } else if (userInt == 1 && randomNumber == 0) {
+                    JOptionPane.showMessageDialog(null, "You Win!");
+                } else if (userInt == 2 && randomNumber == 0) {
+                    JOptionPane.showMessageDialog(null, "You Lose!");
+                } else if (userInt == 2 && randomNumber == 1) {
+                    JOptionPane.showMessageDialog(null, "You Win!");
+                } else if (userInt == 3 && randomNumber == 1) {
+                    JOptionPane.showMessageDialog(null, "You Lose!");
+                } else if (userInt == 3 && randomNumber == 2) {
+                    JOptionPane.showMessageDialog(null, "You Win!");
+                } else {
+                    JOptionPane.showMessageDialog(null, "Hmmm. Something went wrong");
+                }
+                playAgain = JOptionPane.showInputDialog(null, "Do you want to play again? (Yes)");
+
+            }
+            //Break Loop for RPS
+            if (playAgain.equals("no")) {
+                break;
+
+            }
+        }
+        //Mini Game
         while
-        (userAnswer.equals(commandHelp))
-        {
+        (userAnswer.equals(commandMiniGame)){
+            //Initial Setup
+            String fishingCommand, fishingPlayAgain, fishingLoot, fishingShop;
+            int fishingRandomNumber, fishingWallet, fishingAmount, fishingAmountAdd;
+            int fishingCounter;
+            int fishingVarA, fishingVarB, fishingVarC;
+            fishingVarA = 0;
+            fishingVarB = 0;
+            fishingVarC = 0;
+            fishingWallet = 0;
+            fishingAmount = 0;
+            fishingAmountAdd = 0;
+            fishingCounter = 0;
+
+            //Main Code
+            do {
+                fishingCommand = JOptionPane.showInputDialog("Enter Command: /fish or /shop or /profile or /advancement");
+                //Fishing Cammand
+                if (fishingCommand.contains("fish")) {
+                    fishingRandomNumber = (int) (Math.random() * 1000 + 0);
+                    if (fishingRandomNumber < 500) {
+                        fishingLoot = "Common Item";
+                        fishingAmount = 5 + fishingAmountAdd;
+                    } else if (fishingRandomNumber >= 500 && fishingRandomNumber < 750 - fishingVarA) {
+                        fishingLoot = "Uncommon Item";
+                        fishingAmount = 15 + fishingAmountAdd*3;
+                    } else if (fishingRandomNumber >= 750 - fishingVarA && fishingRandomNumber < 900 - fishingVarB) {
+                        fishingLoot = "Rare Item";
+                        fishingAmount = 50 + fishingAmountAdd*10;
+                    } else if (fishingRandomNumber >= 900 - fishingVarB && fishingRandomNumber < 950) {
+                        fishingLoot = "Super Rare Item";
+                        fishingAmount = 100 + fishingAmountAdd*20;
+                    } else if (fishingRandomNumber >= 950 && fishingRandomNumber < 990 - fishingVarC) {
+                        fishingLoot = "Mythic Item";
+                        fishingAmount = 250 + fishingAmountAdd*50;
+                    } else if (fishingRandomNumber >= 990 - fishingVarC) {
+                        fishingLoot = "Legendary Item";
+                        fishingAmount = 500 + fishingAmountAdd*100;
+                    } else {
+                        fishingLoot = "Unknown Item";
+                    }
+                    fishingWallet = fishingWallet + fishingAmount;
+                    fishingCounter ++;
+                    JOptionPane.showMessageDialog(null, "You caught a " + fishingLoot + ". You sold it for " + fishingAmount + " coins. You have $" + fishingWallet + " in your wallet.");
+                    //Shopping Command
+                } else if (fishingCommand.contains("shop")){
+                    fishingShop = JOptionPane.showInputDialog("You have " + fishingWallet + " coins. Select what you want to buy: /rod (50 coins), /bait (100 coins), /line (250 coins), /profits (25 coins), /crate (100 coins)");
+                    if (fishingShop.contains("rod")){
+                        fishingVarA = fishingVarA + 50;
+                        fishingWallet = fishingWallet - 50;
+                        JOptionPane.showMessageDialog(null, "You have bought a fishing rod. Increased chance (+5%) of uncommon item.");
+                    } else if (fishingShop.contains("bait")){
+                        fishingVarB = fishingVarB + 50;
+                        fishingWallet = fishingWallet - 100;
+                        JOptionPane.showMessageDialog(null, "You have bought a fishing bait. Increased chance (+5%) of super rare item.");
+                    } else if (fishingShop.contains("line")){
+                        fishingVarC = fishingVarC + 50;
+                        fishingWallet = fishingWallet - 250;
+                        JOptionPane.showMessageDialog(null, "You have bought a fishing line. Increased (+5%) chance of legendary item.");
+                    } else if (fishingShop.contains("profit")){
+                        fishingAmountAdd ++;
+                        fishingWallet = fishingWallet - 25;
+                        JOptionPane.showMessageDialog(null, "You have bought a profit ungrade. You will earn more money per catch.");
+                    }else if (fishingShop.contains("crate")) {
+                        fishingWallet = fishingWallet - 100;
+                        String fishingCrateString;
+                        fishingCrateString = "None";
+                        int fishingCrate = 0;
+                        fishingCrate = (int)(Math.random()*100);
+                        if (fishingCrate >= 0 && fishingCrate < 50){
+                            fishingAmountAdd++;
+                            fishingCrateString = "Profit";
+                        } else if (fishingCrate >= 50 && fishingCrate < 75){
+                            fishingVarA = fishingVarA + 50;
+                            fishingCrateString = "Increased Uncommon Item Chance";
+                        } else if (fishingCrate >= 75 && fishingCrate < 90){
+                            fishingVarB = fishingVarB + 50;
+                            fishingCrateString = "Increased Super rare Item Chance";
+                        } else if (fishingCrate >= 90){
+                            fishingVarC = fishingVarC + 50;
+                            fishingCrateString = "Increased Legendary Item Chance";
+                        }
+
+
+                        JOptionPane.showMessageDialog(null, "You have got a " + fishingCrateString + " ungrade.");
+                    }else {
+                        JOptionPane.showMessageDialog(null, "You have bought nothing");
+                    }
+                    //Profile Command
+                } else if (fishingCommand.contains("profile")){
+                    JOptionPane.showMessageDialog(null, "Fish Caught:  " + fishingCounter + " fishes. ");
+                    JOptionPane.showMessageDialog(null, "Wallet Balance:  " + fishingWallet + " coins. ");
+                    JOptionPane.showMessageDialog(null, "Profit Upgrades:  " + fishingAmountAdd + " profit upgrades ");
+                } else if (fishingCommand.contains("advance")){
+                    if(fishingCounter > 50){
+                        JOptionPane.showMessageDialog(null, "Dedicated Fisher");
+                    } else if (fishingCounter > 500){
+                        JOptionPane.showMessageDialog(null, "Super Dedicated Fisher");
+                    } else if (fishingCounter > 1000) {
+                        JOptionPane.showMessageDialog(null, "Ultra Dedicated Fisher");
+                    }
+                    if(fishingWallet > 10000){
+                        JOptionPane.showMessageDialog(null, "Business Guru");
+                    } else if (fishingWallet > 100000){
+                        JOptionPane.showMessageDialog(null, "Monopoly Man");
+                    } else{
+                        JOptionPane.showMessageDialog(null, "No Awards Yet. Go fish or something");
+                    }
+                }
+
+                fishingPlayAgain = JOptionPane.showInputDialog("Would you like to keep playing?: /yes or /no");
+            } while (fishingPlayAgain.contains("es)"));
+
+            //Break loop for Mini Game
+            if (fishingPlayAgain.equals("no")){
+                break;
+            }
+        }
+        //Help Command
+        while
+        (userAnswer.equals(commandHelp)) {
             JOptionPane.showMessageDialog(null, "You can use the following commands");
             JOptionPane.showMessageDialog(null, "Help: To learn about commands");
             JOptionPane.showMessageDialog(null, "Math: Need help with Math?");
             JOptionPane.showMessageDialog(null, "Jokes: Tells you a funny joke");
             JOptionPane.showMessageDialog(null, "RPS: Want to play Rock paper scissors");
+            JOptionPane.showMessageDialog(null, "To play a game type Play");
             String answerForQuitHelp = JOptionPane.showInputDialog("Type Quit to exit this loop :)");
 
-            if(answerForQuitHelp.equals(commandQuit)){
+            if (answerForQuitHelp.equals(commandQuit)) {
                 break;
-            }else{
+            } else {
                 JOptionPane.showMessageDialog(null, "Hey that's not an option");
             }
-
 
 
         }
 
 
-        while(userAnswer.equals(commandMath)){
+        while (userAnswer.equals(commandMath)) {
 
 
             String whatToTheMath = JOptionPane.showInputDialog("M = multiplication. D = division. S = Subtraction. A = Addition. Or Quit to quit.");
 
-            while(whatToTheMath.equals("S")){
+            while (whatToTheMath.equals("S")) {
                 String mathNum1Sub = JOptionPane.showInputDialog("First number you want to do Subtractions with");
                 int mathNum1SubInt = Integer.parseInt(mathNum1Sub);
                 String mathNum2Sub = JOptionPane.showInputDialog("And what will be the second number you will subtract?");
                 int mathNum2SubInt = Integer.parseInt(mathNum2Sub);
-                int subtractionAnswer = mathNum1SubInt-mathNum2SubInt;
-                JOptionPane.showMessageDialog(null, mathNum1SubInt+ " - "+mathNum2SubInt + " = "+subtractionAnswer);
+                int subtractionAnswer = mathNum1SubInt - mathNum2SubInt;
+                JOptionPane.showMessageDialog(null, mathNum1SubInt + " - " + mathNum2SubInt + " = " + subtractionAnswer);
                 String answerToQuitSub = JOptionPane.showInputDialog("Do you want to quit. Type Quit then.");
 
-                if (answerToQuitSub.equals(commandQuit)){
+                if (answerToQuitSub.equals(commandQuit)) {
                     break;
-                }else{
+                } else {
                     JOptionPane.showMessageDialog(null, "I don't really remember putting that command");
 
                 }
 
             }
 
-            while(whatToTheMath.equals("D")){
+            while (whatToTheMath.equals("D")) {
                 String mathNum1Div = JOptionPane.showInputDialog("What the first number you want to divide");
                 int mathNumDivInt = Integer.parseInt(mathNum1Div);
-                String mathNum2Div = JOptionPane.showInputDialog("Ok then. "+ mathNumDivInt+" ÷ "+ "what");
+                String mathNum2Div = JOptionPane.showInputDialog("Ok then. " + mathNumDivInt + " ÷ " + "what");
                 int mathNum2DivInt = Integer.parseInt(mathNum2Div);
-                int mathDivAnswer = mathNumDivInt/mathNum2DivInt;
-                JOptionPane.showMessageDialog(null, mathNum1Div + " ÷ "+mathNum2Div+ " = "+mathDivAnswer);
+                int mathDivAnswer = mathNumDivInt / mathNum2DivInt;
+                JOptionPane.showMessageDialog(null, mathNum1Div + " ÷ " + mathNum2Div + " = " + mathDivAnswer);
 
                 String answerToQuit = JOptionPane.showInputDialog("Just type Quit...");
 
-                if (answerToQuit.equals(commandQuit)){
+                if (answerToQuit.equals(commandQuit)) {
                     break;
                 }
 
@@ -89,15 +270,14 @@ public class Main {
                 if
                 (ifUserQuits.equals(commandQuit)) {
                     break;
-                }else {
+                } else {
                     JOptionPane.showMessageDialog(null, "I don't remember putting that command");
                 }
 
             }
             //This Part is Addition
             while
-            (whatToTheMath.equals("A"))
-            {
+            (whatToTheMath.equals("A")) {
 
                 String numMath1 = JOptionPane.showInputDialog("What's the first number you want to add?");
                 int numMath1Int = Integer.parseInt(numMath1);
@@ -107,9 +287,9 @@ public class Main {
                 JOptionPane.showMessageDialog(null, "So, " + numMath1 + " + " + numMath2 + " = " + numMathAnswer);
                 String UserQuitAdd = JOptionPane.showInputDialog("Do you want to quit? Then Type Quit");
 
-                if (UserQuitAdd.equals(commandQuit)){
+                if (UserQuitAdd.equals(commandQuit)) {
                     break;
-                }else {
+                } else {
 
                     JOptionPane.showMessageDialog(null, "Nice try, but sorry not a command");
 
@@ -118,84 +298,85 @@ public class Main {
 
             }
             //Break for the main Math while loop
-            if (whatToTheMath.equals(commandQuit)){
+            if (whatToTheMath.equals(commandQuit)) {
                 break;
             }
 
         }
 
-        while (userAnswer.equals(commandJokes)){
+        while (userAnswer.equals(commandJokes)) {
             String JokesAnswerUser = JOptionPane.showInputDialog("Type: Knock for knock knock jokes, or read for reading jokes or Quit to quit the program");
 
-            if (JokesAnswerUser.equals("Knock")){
+            if (JokesAnswerUser.equals("Knock")) {
                 String knockJokes1 = JOptionPane.showInputDialog("Knock knock");
-                if (knockJokes1.equals("Who is there")){
+                if (knockJokes1.equals("Who is there")) {
 
                     String knockJoke1sec = JOptionPane.showInputDialog("Goat");
-                    if (knockJoke1sec.equals("Goat who")){
+                    if (knockJoke1sec.equals("Goat who")) {
 
                         JOptionPane.showMessageDialog(null, "Goat to the door and find out!");
                         String knockJokes2 = JOptionPane.showInputDialog("Want another Joke? Type Knock2 for one more");
 
-                        if (knockJokes2.equals("Knock2")){
+                        if (knockJokes2.equals("Knock2")) {
 
                             String knockJokes2First = JOptionPane.showInputDialog("Knock Knock");
-                            if (knockJokes2First.equals("Who is there")){
+                            if (knockJokes2First.equals("Who is there")) {
                                 String knockJokes2Sec = JOptionPane.showInputDialog("Zoom");
 
-                                if (knockJokes2Sec.equals("Zoom who")){
+                                if (knockJokes2Sec.equals("Zoom who")) {
 
                                     JOptionPane.showMessageDialog(null, "Zoom who did you think it was?");
                                     String knockJokes3User = JOptionPane.showInputDialog("Want to do another? Type Knock3");
-                                    if (knockJokes3User.equals("Knock3")){
+                                    if (knockJokes3User.equals("Knock3")) {
                                         String knock3First = JOptionPane.showInputDialog("Knock Knock");
-                                        if (knock3First.equals("Who is there")){
+                                        if (knock3First.equals("Who is there")) {
                                             String knock3Sec = JOptionPane.showInputDialog("Bless");
 
-                                            if (knock3Sec.equals("Bless who")){
+                                            if (knock3Sec.equals("Bless who")) {
 
                                                 JOptionPane.showMessageDialog(null, "But I didn't sneeze");
 
-                                            }else {
+                                            } else {
                                                 JOptionPane.showMessageDialog(null, "Your type needs work, try not making a typo");
                                             }
 
-                                        }else {
+                                        } else {
                                             JOptionPane.showMessageDialog(null, "I think you made a typo");
                                         }
 
-                                    }else {
+                                    } else {
                                         break;
                                     }
 
-                                }else {
+                                } else {
                                     JOptionPane.showMessageDialog(null, "You don't say that");
                                     break;
                                 }
 
-                            }else {
+                            } else {
                                 JOptionPane.showMessageDialog(null, "That's not how to reply");
                                 break;
                             }
 
-                        }else {
+                        } else {
                             break;
                         }
 
 
-                    }else{
+                    } else {
                         JOptionPane.showMessageDialog(null, "You ask Goat who");
                     }
 
-                }else {
+                } else {
                     JOptionPane.showMessageDialog(null, "Have you not played before you ask Who is there");
                 }
 
             }
 
-            if (JokesAnswerUser.equals(commandQuit)){
+            if (JokesAnswerUser.equals(commandQuit)) {
                 break;
             }
+
         }
 
     }
