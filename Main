@@ -9,12 +9,87 @@ public class Main {
         String commandHelp = "Help";
         String commandMath = "Math";
         String commandJokes = "Jokes";
-        String commandRPS = "RPS";
+        String commandRPS = "rps";
         String commandQuit = "Quit";
         String commandMiniGame = "Play";
+        String commandCrypto = "crypto";
+        String commandTimer = "Timer";
+
+        //Crypto Converter
+
+        if(userAnswer.toLowerCase().equals(commandCrypto)){
+            double usdToTetherExchange = 1.00002873;
+            double usdToSolonaExchange = 0.02997409;
+            double usdToCardanoExchange = 2.29069495;
+            double usdToEthereumExchange = 0.00075188;
+            double usdToBitcoinExchange = 0.00005127;
+            double usdToDogecoinExchange = 16.47430763;
+
+            //Chose Conversion Type
+            String[] direction = { "USD to Crypto", "Cryto to USD"};
+            int directionInt = JOptionPane.showOptionDialog(null, "Select",
+                    "Currency Conversion", JOptionPane.DEFAULT_OPTION, 0, null,
+                    direction, null);
+
+            //USD to Crypto
+            if (directionInt == 0) {
+
+                int currencyUserInt;
+                String currencyUserInput = JOptionPane.showInputDialog("How much money (USD) do you want to convert?");
+                currencyUserInt = Integer.parseInt(currencyUserInput);
+
+                String[] options = {"Tether", "Solona", "Cardano", "Ethereum", "Bitcoin", "Dogecoin"};
+
+                String choice = (String) JOptionPane.showInputDialog(null, "Select which cryto coin to convert:",
+                        "Currency Conversion", JOptionPane.PLAIN_MESSAGE, null, options, null);
+
+                if (choice.equals("Tether")) {
+                    JOptionPane.showMessageDialog(null, currencyUserInt + " USD is equal to " + usdToTetherExchange * currencyUserInt + " Tether (USDT)");
+                } else if (choice.equals("Solona")) {
+                    JOptionPane.showMessageDialog(null, currencyUserInt + " USD is equal to " + usdToSolonaExchange * currencyUserInt + " Solona (SOL)");
+                } else if (choice.equals("Cardano")) {
+                    JOptionPane.showMessageDialog(null, currencyUserInt + " USD is equal to " + usdToCardanoExchange * currencyUserInt + " Cardano (ADA)");
+                } else if (choice.equals("Ethereum")) {
+                    JOptionPane.showMessageDialog(null, currencyUserInt + " USD is equal to " + usdToEthereumExchange * currencyUserInt + " Ethereum (ETH)");
+                } else if (choice.equals("Bitcoin")) {
+                    JOptionPane.showMessageDialog(null, currencyUserInt + " USD is equal to " + usdToBitcoinExchange * currencyUserInt + " Bitcoin (BTC)");
+                } else if (choice.equals("Dogecoin")) {
+                    JOptionPane.showMessageDialog(null, currencyUserInt + " USD is equal to " + usdToDogecoinExchange * currencyUserInt + " Dogecoin (DOGE)");
+                }
+            }
+
+            //Crypto to USD
+            if (directionInt == 1) {
+                String[] options = {"Tether", "Solona", "Cardano", "Ethereum", "Bitcoin", "Dogecoin"};
+
+                String choice = (String) JOptionPane.showInputDialog(null, "Select which cryto coin to convert:",
+                        "Currency Conversion", JOptionPane.PLAIN_MESSAGE, null, options, null);
+
+                int currencyUserInt;
+                String currencyUserInput = JOptionPane.showInputDialog("How much do you want to convert?");
+                currencyUserInt = Integer.parseInt(currencyUserInput);
+
+                if (choice.equals("Tether")) {
+                    JOptionPane.showMessageDialog(null, currencyUserInt + " Tether (USDT) is equal to " + currencyUserInt/usdToTetherExchange + " Dollars (USD)");
+                } else if (choice.equals("Solona")) {
+                    JOptionPane.showMessageDialog(null, currencyUserInt + "  Solona (SOL) is equal to " + currencyUserInt/usdToSolonaExchange + " Dollars (USD)");
+                } else if (choice.equals("Cardano")) {
+                    JOptionPane.showMessageDialog(null, currencyUserInt + " Cardano (ADA) is equal to " + currencyUserInt/usdToCardanoExchange + " Dollars (USD)");
+                } else if (choice.equals("Ethereum")) {
+                    JOptionPane.showMessageDialog(null, currencyUserInt + " Ethereum (ETH) is eaqual to " + currencyUserInt/usdToEthereumExchange + " Dollars (USD)");
+                } else if (choice.equals("Bitcoin")) {
+                    JOptionPane.showMessageDialog(null, currencyUserInt + " Bitcoin (BTC) is equal to " + currencyUserInt/usdToBitcoinExchange + " Dollars (USD)");
+                } else if (choice.equals("Dogecoin")) {
+                    JOptionPane.showMessageDialog(null, currencyUserInt + " Dogecoin (DOGE) is equal to " + currencyUserInt/usdToDogecoinExchange + " Dollars (USD)");
+                }
+            }
+
+        }
+
+
 
         //RPS
-        while(userAnswer.equals(commandRPS)){
+        while(userAnswer.toLowerCase().equals(commandRPS)){
             String userInput, playAgain, oppInput;
             int userInt, randomNumber;
             userInt = 3;
@@ -202,7 +277,9 @@ public class Main {
             JOptionPane.showMessageDialog(null, "Jokes: Tells you a funny joke");
             JOptionPane.showMessageDialog(null, "RPS: Want to play Rock paper scissors");
             JOptionPane.showMessageDialog(null, "To play a game type Play");
+            JOptionPane.showMessageDialog(null, "Convert Crypto prices type crypto");
             String answerForQuitHelp = JOptionPane.showInputDialog("Type Quit to exit this loop :)");
+            
 
             if (answerForQuitHelp.equals(commandQuit)) {
                 break;
@@ -239,10 +316,10 @@ public class Main {
 
             while (whatToTheMath.equals("D")) {
                 String mathNum1Div = JOptionPane.showInputDialog("What the first number you want to divide");
-                int mathNumDivInt = Integer.parseInt(mathNum1Div);
+                double mathNumDivInt = Integer.parseInt(mathNum1Div);
                 String mathNum2Div = JOptionPane.showInputDialog("Ok then. " + mathNumDivInt + " ÷ " + "what");
-                int mathNum2DivInt = Integer.parseInt(mathNum2Div);
-                int mathDivAnswer = mathNumDivInt / mathNum2DivInt;
+                double mathNum2DivInt = Integer.parseInt(mathNum2Div);
+                double mathDivAnswer = mathNumDivInt / mathNum2DivInt;
                 JOptionPane.showMessageDialog(null, mathNum1Div + " ÷ " + mathNum2Div + " = " + mathDivAnswer);
 
                 String answerToQuit = JOptionPane.showInputDialog("Just type Quit...");
@@ -307,32 +384,32 @@ public class Main {
         while (userAnswer.equals(commandJokes)) {
             String JokesAnswerUser = JOptionPane.showInputDialog("Type: Knock for knock knock jokes, or read for reading jokes or Quit to quit the program");
 
-            if (JokesAnswerUser.equals("Knock")) {
+            if (JokesAnswerUser.toLowerCase().equals("Knock")) {
                 String knockJokes1 = JOptionPane.showInputDialog("Knock knock");
-                if (knockJokes1.equals("Who is there")) {
+                if (knockJokes1.toLowerCase().equals("Who is there")) {
 
                     String knockJoke1sec = JOptionPane.showInputDialog("Goat");
-                    if (knockJoke1sec.equals("Goat who")) {
+                    if (knockJoke1sec.toLowerCase().equals("Goat who")) {
 
                         JOptionPane.showMessageDialog(null, "Goat to the door and find out!");
                         String knockJokes2 = JOptionPane.showInputDialog("Want another Joke? Type Knock2 for one more");
 
-                        if (knockJokes2.equals("Knock2")) {
+                        if (knockJokes2.toLowerCase().equals("knock2")) {
 
                             String knockJokes2First = JOptionPane.showInputDialog("Knock Knock");
-                            if (knockJokes2First.equals("Who is there")) {
+                            if (knockJokes2First.toLowerCase().equals("Who is there")) {
                                 String knockJokes2Sec = JOptionPane.showInputDialog("Zoom");
 
-                                if (knockJokes2Sec.equals("Zoom who")) {
+                                if (knockJokes2Sec.toLowerCase().equals("zoom who")) {
 
                                     JOptionPane.showMessageDialog(null, "Zoom who did you think it was?");
                                     String knockJokes3User = JOptionPane.showInputDialog("Want to do another? Type Knock3");
                                     if (knockJokes3User.equals("Knock3")) {
                                         String knock3First = JOptionPane.showInputDialog("Knock Knock");
-                                        if (knock3First.equals("Who is there")) {
+                                        if (knock3First.toLowerCase().equals("who is there")) {
                                             String knock3Sec = JOptionPane.showInputDialog("Bless");
 
-                                            if (knock3Sec.equals("Bless who")) {
+                                            if (knock3Sec.toLowerCase().equals("bless who")) {
 
                                                 JOptionPane.showMessageDialog(null, "But I didn't sneeze");
 
